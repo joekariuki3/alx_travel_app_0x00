@@ -17,8 +17,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from . import swagger_urls
-
+from listings import urls as listings_urls
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(swagger_urls.urlpatterns)),
+    path('api/', include(listings_urls.urlpatterns)),
 ]
