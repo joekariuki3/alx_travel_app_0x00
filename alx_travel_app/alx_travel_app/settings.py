@@ -38,7 +38,7 @@ ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[])
 # Application definition
 
 INSTALLED_APPS = [
-    'alx_travel_app.listings.apps.ListingsConfig',
+    'listings.apps.ListingsConfig',
     'rest_framework',
     'drf_yasg',
     'django.contrib.admin',
