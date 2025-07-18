@@ -4,7 +4,7 @@ from uuid import UUID
 from datetime import datetime
 
 from django.core.management.base import BaseCommand
-from alx_travel_app.listings.models import User, Location, Listing, Booking, Review
+from listings.models import User, Location, Listing, Booking, Review
 
 def read_csv_generator(csv_file):
     with open(csv_file, 'r') as f:
@@ -18,7 +18,8 @@ def parse_bool(value):
 def parse_uuid(value):
     try:
         return UUID(value)
-    except Exception:
+    except Exception as e:
+        print(f"[UUID]({value}) Error: {e}")
         return None
 
 def parse_datetime(value):
@@ -39,7 +40,7 @@ def populate_user_table(csv_file, stdout):
                     'email': row['email'],
                     'is_staff': parse_bool(row['is_staff']),
                     'is_active': parse_bool(row['is_active']),
-                    'date_joined': parse_datetime(row['date_joined']),
+                    'date_joined': row['date_joined'],
                 }
             )
             action = "Created" if created else "Exists"
